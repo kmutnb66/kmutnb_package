@@ -10,6 +10,14 @@ class HoldHttp {
     var response = await http.post(url, headers: {"authorization": ""},body: data);
     return response;
   }
+
+  Future<http.Response> renew({required String checkoutid,Map<String, dynamic>? data,Map<String, dynamic>? query}) async{
+     var url = Uri.https(enviroment.apiUrls[ApiName.smartapp],
+        "/LibMobile/v1/patron/$checkoutid/renew", query);
+    var response = await http.post(url, headers: {"authorization": ""},body: data);
+    return response;
+  }
+  
 }
 
 class MoreItemInfoHttp {

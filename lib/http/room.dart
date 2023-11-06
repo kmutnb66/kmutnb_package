@@ -28,4 +28,10 @@ class RoomBookingHttp {
     return response;
   }
 
+  Future<http.Response> cancel({Map<String, dynamic>? query}) async {
+    var url = Uri.https(enviroment.apiUrls[ApiName.smartroom] ,"/bookroom/deleteapi" ,query);
+    var response = await http.get(url, headers: {"authorization": ""});
+    return response;
+  }
+
 }
