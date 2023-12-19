@@ -58,6 +58,7 @@ class PatronInfoList {
   double? ptype_code;
   String? email;
   String? patron_message_code;
+  String? patron_id;
   PatronInfoList({
     this.barcode,
     this.patron_record_id,
@@ -69,6 +70,7 @@ class PatronInfoList {
     this.ptype_code,
     this.email,
     this.patron_message_code,
+    this.patron_id,
   });
 
   PatronInfoList copyWith({
@@ -82,6 +84,7 @@ class PatronInfoList {
     double? ptype_code,
     String? email,
     String? patron_message_code,
+    String? patron_id,
   }) {
     return PatronInfoList(
       barcode: barcode ?? this.barcode,
@@ -94,6 +97,7 @@ class PatronInfoList {
       ptype_code: ptype_code ?? this.ptype_code,
       email: email ?? this.email,
       patron_message_code: patron_message_code ?? this.patron_message_code,
+      patron_id: patron_id ?? this.patron_id,
     );
   }
 
@@ -109,6 +113,7 @@ class PatronInfoList {
       'ptype_code': ptype_code,
       'email': email,
       'patron_message_code': patron_message_code,
+      'patron_id': patron_id,
     };
   }
 
@@ -124,6 +129,7 @@ class PatronInfoList {
       ptype_code: map['ptype_code']?.toDouble(),
       email: map['email'],
       patron_message_code: map['patron_message_code'],
+      patron_id: map['patron_id'],
     );
   }
 
@@ -133,7 +139,7 @@ class PatronInfoList {
 
   @override
   String toString() {
-    return 'PatronInfoList(barcode: $barcode, patron_record_id: $patron_record_id, last_name: $last_name, activity_gmt: $activity_gmt, owed_amt: $owed_amt, checkout_count: $checkout_count, expiration_date_gmt: $expiration_date_gmt, ptype_code: $ptype_code, email: $email, patron_message_code: $patron_message_code)';
+    return 'PatronInfoList(barcode: $barcode, patron_record_id: $patron_record_id, last_name: $last_name, activity_gmt: $activity_gmt, owed_amt: $owed_amt, checkout_count: $checkout_count, expiration_date_gmt: $expiration_date_gmt, ptype_code: $ptype_code, email: $email, patron_message_code: $patron_message_code, patron_id: $patron_id)';
   }
 
   @override
@@ -150,7 +156,8 @@ class PatronInfoList {
       other.expiration_date_gmt == expiration_date_gmt &&
       other.ptype_code == ptype_code &&
       other.email == email &&
-      other.patron_message_code == patron_message_code;
+      other.patron_message_code == patron_message_code &&
+      other.patron_id == patron_id;
   }
 
   @override
@@ -164,6 +171,7 @@ class PatronInfoList {
       expiration_date_gmt.hashCode ^
       ptype_code.hashCode ^
       email.hashCode ^
-      patron_message_code.hashCode;
+      patron_message_code.hashCode ^
+      patron_id.hashCode;
   }
 }

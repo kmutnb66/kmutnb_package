@@ -26,7 +26,15 @@ class MoreItemInfoHttp {
   Future<http.Response> object(
       {required String barcode, Map<String, dynamic>? query}) async {
     var url = Uri.http(enviroment.apiUrls[0],
-        "/api4libmobile/api/index.php/MoreItemInfo/$barcode", query);
+        "/api4libmobile/api/index.php/XItemInfo/$barcode", query);
+    var response = await http.get(url, headers: {"authorization": ""});
+    return response;
+  }
+
+  Future<http.Response> cover(
+      {required String bib_record_id, Map<String, dynamic>? query}) async {
+    var url = Uri.http(enviroment.apiUrls[0],
+        "/api4libmobile/api/index.php/GetCoverByBibRecId/$bib_record_id", query);
     var response = await http.get(url, headers: {"authorization": ""});
     return response;
   }
