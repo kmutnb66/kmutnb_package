@@ -4,8 +4,8 @@ import 'package:flutter/foundation.dart';
 
 class HoldsFormModel {
   HoldshelfModel? holdshelf;
-  ItemAsVolumeModel? itemsAsVolumes;
-  VolumeModel? volumes;
+  List<ItemAsVolumeModel>? itemsAsVolumes;
+  List<VolumeModel>? volumes;
   HoldsFormModel({
     this.holdshelf,
     this.itemsAsVolumes,
@@ -14,8 +14,8 @@ class HoldsFormModel {
 
   HoldsFormModel copyWith({
     HoldshelfModel? holdshelf,
-    ItemAsVolumeModel? itemsAsVolumes,
-    VolumeModel? volumes,
+    List<ItemAsVolumeModel>? itemsAsVolumes,
+    List<VolumeModel>? volumes,
   }) {
     return HoldsFormModel(
       holdshelf: holdshelf ?? this.holdshelf,
@@ -27,16 +27,16 @@ class HoldsFormModel {
   Map<String, dynamic> toMap() {
     return {
       'holdshelf': holdshelf?.toMap(),
-      'itemsAsVolumes': itemsAsVolumes?.toMap(),
-      'volumes': volumes?.toMap(),
+      'itemsAsVolumes': itemsAsVolumes?.map((x) => x.toMap()).toList(),
+      'volumes': volumes?.map((x) => x.toMap()).toList(),
     };
   }
 
   factory HoldsFormModel.fromMap(Map<String, dynamic> map) {
     return HoldsFormModel(
       holdshelf: map['holdshelf'] != null ? HoldshelfModel.fromMap(map['holdshelf']) : null,
-      itemsAsVolumes: map['itemsAsVolumes'] != null ? ItemAsVolumeModel.fromMap(map['itemsAsVolumes']) : null,
-      volumes: map['volumes'] != null ? VolumeModel.fromMap(map['volumes']) : null,
+      itemsAsVolumes: map['itemsAsVolumes'] != null ? List<ItemAsVolumeModel>.from(map['itemsAsVolumes']?.map((x) => ItemAsVolumeModel.fromMap(x))) : null,
+      volumes: map['volumes'] != null ? List<VolumeModel>.from(map['volumes']?.map((x) => VolumeModel.fromMap(x))) : null,
     );
   }
 
@@ -53,8 +53,8 @@ class HoldsFormModel {
   
     return other is HoldsFormModel &&
       other.holdshelf == holdshelf &&
-      other.itemsAsVolumes == itemsAsVolumes &&
-      other.volumes == volumes;
+      listEquals(other.itemsAsVolumes, itemsAsVolumes) &&
+      listEquals(other.volumes, volumes);
   }
 
   @override
