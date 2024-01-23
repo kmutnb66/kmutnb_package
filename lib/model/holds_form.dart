@@ -63,7 +63,7 @@ class HoldsFormModel {
 
 class HoldshelfModel {
   List<LocationModel>? locations;
-  List<LocationModel>? selected;
+  LocationModel? selected;
   HoldshelfModel({
     this.locations,
     this.selected,
@@ -71,7 +71,7 @@ class HoldshelfModel {
 
   HoldshelfModel copyWith({
     List<LocationModel>? locations,
-    List<LocationModel>? selected,
+    LocationModel? selected,
   }) {
     return HoldshelfModel(
       locations: locations ?? this.locations,
@@ -82,14 +82,14 @@ class HoldshelfModel {
   Map<String, dynamic> toMap() {
     return {
       'locations': locations?.map((x) => x.toMap()).toList(),
-      'selected': selected?.map((x) => x.toMap()).toList(),
+      'selected': selected?.toMap(),
     };
   }
 
   factory HoldshelfModel.fromMap(Map<String, dynamic> map) {
     return HoldshelfModel(
       locations: map['locations'] != null ? List<LocationModel>.from(map['locations']?.map((x) => LocationModel.fromMap(x))) : null,
-      selected: map['selected'] != null ? List<LocationModel>.from(map['selected']?.map((x) => LocationModel.fromMap(x))) : null,
+      selected: map['selected'] != null ? LocationModel.fromMap(map['selected']) : null,
     );
   }
 
@@ -106,7 +106,7 @@ class HoldshelfModel {
   
     return other is HoldshelfModel &&
       listEquals(other.locations, locations) &&
-      listEquals(other.selected, selected);
+      other.selected == selected;
   }
 
   @override
