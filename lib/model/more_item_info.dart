@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
+import 'package:kmutnb_package/model/image.dart';
+
 class MoreItemInfoModel {
  List<MoreItemInfoList>? more_item_info;
   MoreItemInfoModel({
@@ -127,6 +129,7 @@ class MoreItemInfoList {
   String? content;
   String? varfield_type_code;
   String? field_content;
+  ImageModel? images;
   MoreItemInfoList({
     this.cover_url,
     this.id,
@@ -207,6 +210,7 @@ class MoreItemInfoList {
     this.content,
     this.varfield_type_code,
     this.field_content,
+    this.images,
   });
 
   MoreItemInfoList copyWith({
@@ -289,6 +293,7 @@ class MoreItemInfoList {
     String? content,
     String? varfield_type_code,
     String? field_content,
+    ImageModel? images,
   }) {
     return MoreItemInfoList(
       cover_url: cover_url ?? this.cover_url,
@@ -370,6 +375,7 @@ class MoreItemInfoList {
       content: content ?? this.content,
       varfield_type_code: varfield_type_code ?? this.varfield_type_code,
       field_content: field_content ?? this.field_content,
+      images: images ?? this.images,
     );
   }
 
@@ -454,6 +460,7 @@ class MoreItemInfoList {
       'content': content,
       'varfield_type_code': varfield_type_code,
       'field_content': field_content,
+      'images': images?.toMap(),
     };
   }
 
@@ -538,6 +545,7 @@ class MoreItemInfoList {
       content: map['content'],
       varfield_type_code: map['varfield_type_code'],
       field_content: map['field_content'],
+      images: map['images'] != null ? ImageModel.fromMap(map['images']) : null,
     );
   }
 
@@ -547,7 +555,7 @@ class MoreItemInfoList {
 
   @override
   String toString() {
-    return 'MoreItemInfoList(cover_url: $cover_url, id: $id, record_type_code: $record_type_code, record_num: $record_num, language_code: $language_code, bcode1: $bcode1, bcode2: $bcode2, bcode3: $bcode3, country_code: $country_code, is_available_at_library: $is_available_at_library, index_change_count: $index_change_count, allocation_rule_code: $allocation_rule_code, is_on_course_reserve: $is_on_course_reserve, is_right_result_exact: $is_right_result_exact, skip_num: $skip_num, cataloging_date_gmt: $cataloging_date_gmt, marc_type_code: $marc_type_code, title: $title, record_creation_date_gmt: $record_creation_date_gmt, bib_record_id: $bib_record_id, item_record_id: $item_record_id, items_display_order: $items_display_order, bibs_display_order: $bibs_display_order, barcode: $barcode, icode1: $icode1, icode2: $icode2, itype_code_num: $itype_code_num, location_code: $location_code, agency_code_num: $agency_code_num, item_status_code: $item_status_code, is_inherit_loc: $is_inherit_loc, price: $price, last_checkin_gmt: $last_checkin_gmt, checkout_total: $checkout_total, renewal_total: $renewal_total, last_year_to_date_checkout_total: $last_year_to_date_checkout_total, year_to_date_checkout_total: $year_to_date_checkout_total, is_bib_hold: $is_bib_hold, copy_num: $copy_num, checkout_statistic_group_code_num: $checkout_statistic_group_code_num, last_patron_record_metadata_id: $last_patron_record_metadata_id, inventory_gmt: $inventory_gmt, checkin_statistics_group_code_num: $checkin_statistics_group_code_num, use3_count: $use3_count, last_checkout_gmt: $last_checkout_gmt, internal_use_count: $internal_use_count, copy_use_count: $copy_use_count, item_message_code: $item_message_code, opac_message_code: $opac_message_code, virtual_type_code: $virtual_type_code, virtual_item_central_code_num: $virtual_item_central_code_num, holdings_code: $holdings_code, save_itype_code_num: $save_itype_code_num, save_location_code: $save_location_code, save_checkout_total: $save_checkout_total, old_location_code: $old_location_code, distance_learning_status: $distance_learning_status, is_suppressed: $is_suppressed, best_title: $best_title, bib_level_code: $bib_level_code, material_code: $material_code, publish_year: $publish_year, best_title_norm: $best_title_norm, best_author: $best_author, best_author_norm: $best_author_norm, call_number: $call_number, call_number_norm: $call_number_norm, record_id: $record_id, varfield_id: $varfield_id, field_type_code: $field_type_code, marc_tag: $marc_tag, marc_ind1: $marc_ind1, marc_ind2: $marc_ind2, occ_num: $occ_num, display_order: $display_order, tag: $tag, content: $content, varfield_type_code: $varfield_type_code, field_content: $field_content)';
+    return 'MoreItemInfoList(cover_url: $cover_url, id: $id, record_type_code: $record_type_code, record_num: $record_num, language_code: $language_code, bcode1: $bcode1, bcode2: $bcode2, bcode3: $bcode3, country_code: $country_code, is_available_at_library: $is_available_at_library, index_change_count: $index_change_count, allocation_rule_code: $allocation_rule_code, is_on_course_reserve: $is_on_course_reserve, is_right_result_exact: $is_right_result_exact, skip_num: $skip_num, cataloging_date_gmt: $cataloging_date_gmt, marc_type_code: $marc_type_code, title: $title, record_creation_date_gmt: $record_creation_date_gmt, bib_record_id: $bib_record_id, item_record_id: $item_record_id, items_display_order: $items_display_order, bibs_display_order: $bibs_display_order, barcode: $barcode, icode1: $icode1, icode2: $icode2, itype_code_num: $itype_code_num, location_code: $location_code, agency_code_num: $agency_code_num, item_status_code: $item_status_code, is_inherit_loc: $is_inherit_loc, price: $price, last_checkin_gmt: $last_checkin_gmt, checkout_total: $checkout_total, renewal_total: $renewal_total, last_year_to_date_checkout_total: $last_year_to_date_checkout_total, year_to_date_checkout_total: $year_to_date_checkout_total, is_bib_hold: $is_bib_hold, copy_num: $copy_num, checkout_statistic_group_code_num: $checkout_statistic_group_code_num, last_patron_record_metadata_id: $last_patron_record_metadata_id, inventory_gmt: $inventory_gmt, checkin_statistics_group_code_num: $checkin_statistics_group_code_num, use3_count: $use3_count, last_checkout_gmt: $last_checkout_gmt, internal_use_count: $internal_use_count, copy_use_count: $copy_use_count, item_message_code: $item_message_code, opac_message_code: $opac_message_code, virtual_type_code: $virtual_type_code, virtual_item_central_code_num: $virtual_item_central_code_num, holdings_code: $holdings_code, save_itype_code_num: $save_itype_code_num, save_location_code: $save_location_code, save_checkout_total: $save_checkout_total, old_location_code: $old_location_code, distance_learning_status: $distance_learning_status, is_suppressed: $is_suppressed, best_title: $best_title, bib_level_code: $bib_level_code, material_code: $material_code, publish_year: $publish_year, best_title_norm: $best_title_norm, best_author: $best_author, best_author_norm: $best_author_norm, call_number: $call_number, call_number_norm: $call_number_norm, record_id: $record_id, varfield_id: $varfield_id, field_type_code: $field_type_code, marc_tag: $marc_tag, marc_ind1: $marc_ind1, marc_ind2: $marc_ind2, occ_num: $occ_num, display_order: $display_order, tag: $tag, content: $content, varfield_type_code: $varfield_type_code, field_content: $field_content, images: $images)';
   }
 
   @override
@@ -633,7 +641,8 @@ class MoreItemInfoList {
       other.tag == tag &&
       other.content == content &&
       other.varfield_type_code == varfield_type_code &&
-      other.field_content == field_content;
+      other.field_content == field_content &&
+      other.images == images;
   }
 
   @override
@@ -716,6 +725,7 @@ class MoreItemInfoList {
       tag.hashCode ^
       content.hashCode ^
       varfield_type_code.hashCode ^
-      field_content.hashCode;
+      field_content.hashCode ^
+      images.hashCode;
   }
 }

@@ -2,6 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
+import 'package:kmutnb_package/model/book_detail.dart';
+import 'package:kmutnb_package/model/image.dart';
+
 class BookModel {
   double? relevance;
   BookBibModel? bib;
@@ -61,14 +64,17 @@ class BookBibModel {
   String? author;
   double? publishYear;
   List<BookLocation>? locations;
+  ImageModel? images;
+  BookDetailModel? item;
   BookBibModel({
     this.id,
     this.title,
     this.author,
     this.publishYear,
     this.locations,
+    this.images,
+    this.item,
   });
- 
 
   BookBibModel copyWith({
     String? id,
@@ -76,6 +82,8 @@ class BookBibModel {
     String? author,
     double? publishYear,
     List<BookLocation>? locations,
+    ImageModel? images,
+    BookDetailModel? item,
   }) {
     return BookBibModel(
       id: id ?? this.id,
@@ -83,6 +91,8 @@ class BookBibModel {
       author: author ?? this.author,
       publishYear: publishYear ?? this.publishYear,
       locations: locations ?? this.locations,
+      images: images ?? this.images,
+      item: item ?? this.item,
     );
   }
 
@@ -93,6 +103,8 @@ class BookBibModel {
       'author': author,
       'publishYear': publishYear,
       'locations': locations?.map((x) => x.toMap()).toList(),
+      'images': images?.toMap(),
+      'item': item?.toMap(),
     };
   }
 
@@ -103,6 +115,8 @@ class BookBibModel {
       author: map['author'],
       publishYear: map['publishYear']?.toDouble(),
       locations: map['locations'] != null ? List<BookLocation>.from(map['locations']?.map((x) => BookLocation.fromMap(x))) : null,
+      images: map['images'] != null ? ImageModel.fromMap(map['images']) : null,
+      item: map['item'] != null ? BookDetailModel.fromMap(map['item']) : null,
     );
   }
 
@@ -112,7 +126,7 @@ class BookBibModel {
 
   @override
   String toString() {
-    return 'BookBibModel(id: $id, title: $title, author: $author, publishYear: $publishYear, locations: $locations)';
+    return 'BookBibModel(id: $id, title: $title, author: $author, publishYear: $publishYear, locations: $locations, images: $images, item: $item)';
   }
 
   @override
@@ -124,7 +138,9 @@ class BookBibModel {
       other.title == title &&
       other.author == author &&
       other.publishYear == publishYear &&
-      listEquals(other.locations, locations);
+      listEquals(other.locations, locations) &&
+      other.images == images &&
+      other.item == item;
   }
 
   @override
@@ -133,7 +149,9 @@ class BookBibModel {
       title.hashCode ^
       author.hashCode ^
       publishYear.hashCode ^
-      locations.hashCode;
+      locations.hashCode ^
+      images.hashCode ^
+      item.hashCode;
   }
 }
 

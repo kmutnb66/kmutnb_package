@@ -14,6 +14,12 @@ class BookHttp {
     return response;
   }
 
+  Future<http.Response> oject({String id = "",Map<String, dynamic>? query}) async {
+    var url = Uri.https(enviroment.apiUrls[ApiName.smartapp] ,"/LibMobile/v1/items/$id" ,query);
+    var response = await http.get(url, headers: {"authorization": ""});
+    return response;
+  }
+
    Future<http.Response> my({required String patron_id,Map<String, dynamic>? query}) async {
     var url = Uri.https(enviroment.apiUrls[ApiName.smartapp] ,"/LibMobile/v1/patron/$patron_id/holds" ,query);
     var response = await http.get(url, headers: {"authorization": ""});
