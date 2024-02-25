@@ -35,7 +35,6 @@ class BookHttp {
   Future<http.Response> create({required String patron_id,required PatronHoldPostModel data,Map<String, dynamic>? query}) async {
     var url = Uri.https(enviroment.apiUrls[ApiName.smartapp] ,"/LibMobile/v1/patron/$patron_id/holds/requests" ,query);
     var response = await http.post(url,body: data.toJson(), headers: {"Content-Type": "application/json"});
-    print(data.toJson());
     return response;
   }
 
