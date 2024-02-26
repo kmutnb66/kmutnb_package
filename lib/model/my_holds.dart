@@ -79,7 +79,7 @@ class MybookingListModel {
   String? recordType;
   int? priority;
   BookDetailModel? book_detail;
-  BookModel? item_book;
+  BookBibModel? item_book;
   MybookingListModel({
     this.id,
     this.record,
@@ -109,7 +109,7 @@ class MybookingListModel {
     String? recordType,
     int? priority,
     BookDetailModel? book_detail,
-    BookModel? item_book,
+    BookBibModel? item_book,
   }) {
     return MybookingListModel(
       id: id ?? this.id,
@@ -160,7 +160,7 @@ class MybookingListModel {
       recordType: map['recordType'],
       priority: map['priority']?.toInt(),
       book_detail: map['book_detail'] != null ? BookDetailModel.fromMap(map['book_detail']) : null,
-      item_book: map['item_book'] != null ? BookModel.fromMap(map['item_book']) : null,
+      item_book: map['item_book'] != null ? BookBibModel.fromMap(map['item_book']) : null,
     );
   }
 
