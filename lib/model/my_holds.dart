@@ -2,6 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
+import 'package:kmutnb_package/model/book.dart';
+import 'package:kmutnb_package/model/book_detail.dart';
 import 'package:kmutnb_package/model/holds_form.dart';
 
 class MyHoldsModel {
@@ -76,6 +78,8 @@ class MybookingListModel {
   StatusHoldModel? status;
   String? recordType;
   int? priority;
+  BookDetailModel? book_detail;
+  BookModel? item_book;
   MybookingListModel({
     this.id,
     this.record,
@@ -88,6 +92,8 @@ class MybookingListModel {
     this.status,
     this.recordType,
     this.priority,
+    this.book_detail,
+    this.item_book,
   });
 
   MybookingListModel copyWith({
@@ -102,6 +108,8 @@ class MybookingListModel {
     StatusHoldModel? status,
     String? recordType,
     int? priority,
+    BookDetailModel? book_detail,
+    BookModel? item_book,
   }) {
     return MybookingListModel(
       id: id ?? this.id,
@@ -115,6 +123,8 @@ class MybookingListModel {
       status: status ?? this.status,
       recordType: recordType ?? this.recordType,
       priority: priority ?? this.priority,
+      book_detail: book_detail ?? this.book_detail,
+      item_book: item_book ?? this.item_book,
     );
   }
 
@@ -131,6 +141,8 @@ class MybookingListModel {
       'status': status?.toMap(),
       'recordType': recordType,
       'priority': priority,
+      'book_detail': book_detail?.toMap(),
+      'item_book': item_book?.toMap(),
     };
   }
 
@@ -147,6 +159,8 @@ class MybookingListModel {
       status: map['status'] != null ? StatusHoldModel.fromMap(map['status']) : null,
       recordType: map['recordType'],
       priority: map['priority']?.toInt(),
+      book_detail: map['book_detail'] != null ? BookDetailModel.fromMap(map['book_detail']) : null,
+      item_book: map['item_book'] != null ? BookModel.fromMap(map['item_book']) : null,
     );
   }
 
@@ -156,7 +170,7 @@ class MybookingListModel {
 
   @override
   String toString() {
-    return 'MybookingListModel(id: $id, record: $record, patron: $patron, frozen: $frozen, placed: $placed, notNeededAfterDate: $notNeededAfterDate, notWantedBeforeDate: $notWantedBeforeDate, pickupLocation: $pickupLocation, status: $status, recordType: $recordType, priority: $priority)';
+    return 'MybookingListModel(id: $id, record: $record, patron: $patron, frozen: $frozen, placed: $placed, notNeededAfterDate: $notNeededAfterDate, notWantedBeforeDate: $notWantedBeforeDate, pickupLocation: $pickupLocation, status: $status, recordType: $recordType, priority: $priority, book_detail: $book_detail, item_book: $item_book)';
   }
 
   @override
@@ -174,7 +188,9 @@ class MybookingListModel {
       other.pickupLocation == pickupLocation &&
       other.status == status &&
       other.recordType == recordType &&
-      other.priority == priority;
+      other.priority == priority &&
+      other.book_detail == book_detail &&
+      other.item_book == item_book;
   }
 
   @override
@@ -189,7 +205,9 @@ class MybookingListModel {
       pickupLocation.hashCode ^
       status.hashCode ^
       recordType.hashCode ^
-      priority.hashCode;
+      priority.hashCode ^
+      book_detail.hashCode ^
+      item_book.hashCode;
   }
  }
 
